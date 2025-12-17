@@ -11,7 +11,6 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# [OKD 호환] 파일 소유권은 www-data, 그룹 권한(g+w) 추가 (중요!)
 COPY --chown=www-data:0 . .
 RUN chmod -R g+w /var/www/html
 
