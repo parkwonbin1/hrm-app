@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $emp_id = $_POST['emp_id'];
 
 // 기존 정보 불러오기
-$res = $conn->query("SELECT * FROM employees WHERE emp_id='$emp_id'");
+$res = $conn_write->query("SELECT * FROM employees WHERE emp_id='$emp_id'");
 $emp = $res->fetch_assoc();
 
 $name  = $_POST['name'];
@@ -34,7 +34,7 @@ if (isset($_FILES['profile_img']) && $_FILES['profile_img']['error'] === UPLOAD_
     $unique = uniqid("profile_") . "_" . $orig;
 
     // MinIO 업로드
-    $s3->putObject([
+    $s3_writer->putObject([
         'Bucket' => $MINIO_BUCKET,
         'Key' => $unique,
         'SourceFile' => $tmp,
@@ -45,7 +45,7 @@ if (isset($_FILES['profile_img']) && $_FILES['profile_img']['error'] === UPLOAD_
 }
 
 // 최종 UPDATE
-$stmt = $conn->prepare("
+$stmt = $conn_write->prepare("
     UPDATE employees SET
         name=?, department=?, job_title=?, position=?,
         hire_date=?, role=?, tech_stack=?, profile_image_url=?

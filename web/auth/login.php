@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pw    = $_POST['password'];
 
     $sql = "SELECT emp_id, name, role, password FROM employees WHERE email='$email'";
-    $res = $conn->query($sql);
+    $res = $conn_read->query($sql);
 
     if ($res->num_rows == 1) {
         $u = $res->fetch_assoc();

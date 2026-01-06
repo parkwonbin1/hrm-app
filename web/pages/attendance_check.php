@@ -13,7 +13,7 @@ $today  = date("Y-m-d");
 
 // 오늘 기록 조회
 $sql = "SELECT * FROM attendance WHERE emp_id='$emp_id' AND work_date='$today'";
-$res = $conn->query($sql);
+$res = $conn_write->query($sql);
 $att = $res->fetch_assoc();
 
 // ==========================================
@@ -23,7 +23,7 @@ if ($type === "in") {
 
     // 오늘 출근 기록이 없는 경우에만 입력
     if (!$att) {
-        $conn->query("
+        $conn_write->query("
             INSERT INTO attendance(emp_id, work_date, clock_in_time)
             VALUES ('$emp_id', '$today', NOW())
         ");
@@ -37,7 +37,7 @@ elseif ($type === "out") {
 
     // 출근 기록이 있고, 퇴근 시간이 아직 없을 때만 퇴근 처리
     if ($att && empty($att['clock_out_time'])) {
-        $conn->query("
+        $conn_write->query("
             UPDATE attendance 
             SET clock_out_time = NOW(),
                 total_hours = TIMESTAMPDIFF(MINUTE, clock_in_time, NOW()) / 60

@@ -6,7 +6,7 @@ $today = date("Y-m-d");
 
 // 오늘 근태 기록 조회
 $sql = "SELECT * FROM attendance WHERE emp_id='$emp' AND work_date='$today'";
-$res = $conn->query($sql);
+$res = $conn_read->query($sql);
 $att = $res->fetch_assoc();
 
 $has_record   = $res->num_rows > 0;

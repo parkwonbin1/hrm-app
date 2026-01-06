@@ -22,7 +22,7 @@ $keyword = $_GET['keyword'] ?? '';
 $where = "";
 
 if ($keyword !== "") {
-    $safeKeyword = $conn->real_escape_string($keyword);
+    $safeKeyword = $conn_read->real_escape_string($keyword);
 
     if ($field === "all") {
         $where = "WHERE 
@@ -32,19 +32,19 @@ if ($keyword !== "") {
             position LIKE '%$safeKeyword%' OR
             email LIKE '%$safeKeyword%'";
     } else {
-        $safeField = $conn->real_escape_string($field);
+        $safeField = $conn_read->real_escape_string($field);
         $where = "WHERE $safeField LIKE '%$safeKeyword%'";
     }
 }
 
 // 총 데이터 수
-$countRes = $conn->query("SELECT COUNT(*) AS total FROM employees $where");
+$countRes = $conn_read->query("SELECT COUNT(*) AS total FROM employees $where");
 $totalRows = $countRes->fetch_assoc()['total'];
 $totalPages = ceil($totalRows / $limit);
 
 // 현재 페이지 데이터 
 $sql = "SELECT * FROM employees $where ORDER BY emp_id DESC LIMIT $start, $limit";
-$res = $conn->query($sql);
+$res = $conn_read->query($sql);
 ?>
 
 <div class="content">

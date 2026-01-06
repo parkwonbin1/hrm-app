@@ -6,11 +6,11 @@ $id = $_GET['view'] ?? null;
 if (!$id) exit("잘못된 접근");
 
 // 직원 정보 조회
-$empRes = $conn->query("SELECT * FROM employees WHERE emp_id='$id'");
+$empRes = $conn_read->query("SELECT * FROM employees WHERE emp_id='$id'");
 $emp = $empRes->fetch_assoc();
 
 // 최신 출근/퇴근 기록 조회 (최근 1건)
-$attRes = $conn->query("SELECT * FROM attendance WHERE emp_id='$id' ORDER BY work_date DESC LIMIT 1");
+$attRes = $conn_read->query("SELECT * FROM attendance WHERE emp_id='$id' ORDER BY work_date DESC LIMIT 1");
 $att = $attRes->fetch_assoc();
 ?>
 
@@ -26,7 +26,7 @@ $att = $attRes->fetch_assoc();
     <div class="modal-body">
         <div style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
             <div style="flex-shrink: 0;">
-                <img src="<?= $emp['profile_image_url'] ?: 'https://via.placeholder.com/120' ?>"
+                <img src="<?= get_image_url($emp['profile_image_url']) ?: 'https://via.placeholder.com/120' ?>"
                      style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid var(--slate-50); box-shadow: var(--shadow);">
             </div>
             <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">

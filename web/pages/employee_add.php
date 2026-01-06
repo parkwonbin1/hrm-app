@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $tmpPath = $_FILES['profile_img']['tmp_name'];
         $origName = basename($_FILES['profile_img']['name']);
         $uniqueName = uniqid('profile_') . '_' . $origName;
-        $s3->putObject([
+        $s3_writer->putObject([
             'Bucket' => $MINIO_BUCKET,
             'Key'    => $uniqueName,
             'SourceFile' => $tmpPath,
