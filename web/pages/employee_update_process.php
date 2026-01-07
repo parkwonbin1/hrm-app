@@ -35,13 +35,13 @@ if (isset($_FILES['profile_img']) && $_FILES['profile_img']['error'] === UPLOAD_
 
     // MinIO 업로드
     $s3_writer->putObject([
-        'Bucket' => $MINIO_BUCKET,
+        'Bucket' => $bucket,
         'Key' => $unique,
         'SourceFile' => $tmp,
         'ACL' => 'public-read'
     ]);
 
-    $profile_url = $MINIO_PUBLIC . "/" . $unique;
+    $profile_url = $base_url . "/" . $unique;
 }
 
 // 최종 UPDATE

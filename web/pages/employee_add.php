@@ -20,12 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $origName = basename($_FILES['profile_img']['name']);
         $uniqueName = uniqid('profile_') . '_' . $origName;
         $s3_writer->putObject([
-            'Bucket' => $MINIO_BUCKET,
+            'Bucket' => $bucket,
             'Key'    => $uniqueName,
             'SourceFile' => $tmpPath,
             'ACL'    => 'public-read',
         ]);
-        $profile_url = $MINIO_PUBLIC . '/' . $uniqueName;
+        $profile_url = $base_url . '/' . $uniqueName;
     }
 
     $sql = "INSERT INTO employees (name,email,password,department,job_title,position,hire_date,role,tech_stack,profile_image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

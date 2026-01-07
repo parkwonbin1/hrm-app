@@ -11,7 +11,7 @@ $emp = $res->fetch_assoc();
 if (!empty($emp['profile_image_url'])) {
     $key = basename($emp['profile_image_url']);
     $s3_writer->deleteObject([
-        'Bucket' => $MINIO_BUCKET,
+        'Bucket' => $bucket,
         'Key'    => $key
     ]);
 }
