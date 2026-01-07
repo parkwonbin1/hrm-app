@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $sql = "INSERT INTO employees (name,email,password,department,job_title,position,hire_date,role,tech_stack,profile_image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
+    $stmt = $conn_write->prepare($sql);
     $stmt->bind_param('ssssssssss', $name, $email, $pw, $dept, $job, $pos, $hire, $role, $tech, $profile_url);
     if ($stmt->execute()) {
         echo "<script>alert('등록 완료');location.href='index.php?page=employees_list';</script>";
