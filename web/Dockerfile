@@ -1,5 +1,5 @@
 # 1️⃣ composer stage 선언
-FROM composer:latest AS composer
+FROM docker.io/composer:latest AS composer
 
 # 2️⃣ php runtime stage
 FROM php:8.1-fpm-bullseye
