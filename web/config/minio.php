@@ -8,7 +8,7 @@ use Aws\S3\S3Client;
 // =================================================================
 $minio_host = getenv('MINIO_HOST') ?: "172.16.6.143"; // 온프레미스 내부 IP
 $minio_port = getenv('MINIO_PORT') ?: "9000";
-$bucket     = getenv('MINIO_BUCKET') ?: "hrm-profile";
+$bucket     = getenv('MINIO_BUCKET') ?: "hrm-bucket-soldesk";
 
 $minio_key    = getenv('MINIO_ACCESS_KEY') ?: "admin";
 $minio_secret = getenv('MINIO_SECRET_KEY') ?: "admin1234";
