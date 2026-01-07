@@ -49,9 +49,11 @@ if ($storage_mode === 'AWS') {
  * 이미지 전체 URL을 만들어주는 도우미 함수
  * 예: get_image_url('user1.jpg') -> http://minio.../user1.jpg 또는 https://s3.../user1.jpg
  */
-function get_image_url($filename) {
-    global $base_url;
-    if (empty($filename)) return "/assets/img/default_profile.png"; // 기본 이미지
-    return "{$base_url}/{$filename}";
+if (!function_exists('get_image_url')) {
+    function get_image_url($filename) {
+        global $base_url;
+        if (empty($filename)) return "/assets/img/default_profile.png"; // 기본 이미지
+        return "{$base_url}/{$filename}";
+    }
 }
 ?>
