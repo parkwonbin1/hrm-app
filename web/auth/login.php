@@ -2,6 +2,17 @@
 if (session_status() === PHP_SESSION_NONE) session_start();
 include "../config/db.php";
 
+$cluster_env = getenv('CLUSTER_ENV') ?: 'ONPREM';
+
+// 환경에 따른 텍스트와 스타일 설정
+if ($cluster_env === 'AWS_CLOUD') {
+    $env_text = "AWS CLOUD";
+    $env_color = "background-color: #FF9900; color: white;"; // AWS 시그니처 컬러
+} else {
+    $env_text = "ON-PREMISE";
+    $env_color = "background-color: #4f46e5; color: white;"; // 기존 테마 컬러
+}
+
 $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -542,6 +553,16 @@ h4 {
     margin-bottom: 0.5rem;
 }
 
+.env-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
 .login-subtitle {
     color: var(--slate-500);
     font-size: 0.875rem;
@@ -569,6 +590,9 @@ h4 {
     <div class="login-container">
         <div class="login-card">
             <div class="login-header">
+		<div class="env-badge" style="<?= $env_color ?>">
+                    🚀 <?= $env_text ?>
+                </div>
                 <span class="login-logo">🏢</span>
                 <h1 class="login-title">HRM System</h1>
                 <p class="login-subtitle">인사관리 시스템에 오신 것을 환영합니다</p>
