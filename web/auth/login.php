@@ -594,7 +594,7 @@ h4 {
                     🚀 <?= $env_text ?>
                 </div>
                 <span class="login-logo">🏢</span>
-                <h1 class="login-title">HRM System Test</h1>
+                <h1 class="login-title">HRM System</h1>
                 <p class="login-subtitle">인사관리 시스템에 오신 것을 환영합니다</p>
             </div>
 
