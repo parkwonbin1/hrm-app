@@ -8,3 +8,4 @@ demo trigger 2026. 01. 14. (수) 10:05:36 KST
 CI test
 triger test
 CI test
+CI test
