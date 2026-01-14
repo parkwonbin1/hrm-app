@@ -7,3 +7,4 @@ pipeline trigger test 2026. 01. 14. (수) 09:56:37 KST
 demo trigger 2026. 01. 14. (수) 10:05:36 KST
 CI test
 triger test
+CI test
