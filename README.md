@@ -1,4 +1,5 @@
-포트폴리오 및 기술 정리: [노션 링크 바로가기](https://narrow-fedora-c4d.notion.site/2faf3155aa61807da8e6ee49b4629b74?source=copy_link)
+## 포트폴리오 및 기술 정리: 
+[노션 링크 바로가기](https://narrow-fedora-c4d.notion.site/2faf3155aa61807da8e6ee49b4629b74?source=copy_link)
 
 ## 서비스 개발 및 최적화: 하이브리드 클러스터 대응 HRM 앱
 ### 1. 프로젝트 개요
